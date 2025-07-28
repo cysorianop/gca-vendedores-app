@@ -39,11 +39,11 @@ Presentación (UI): Componentes visuales ubicados en src/app/components, cada un
 
 Estructura general de carpetas:
 
-![Diseño desktop](./public/estructura-general.png.png)
+![Carpetas](./public/estructura-general.png)
 
 Estructura carpeta src:
 
-![Diseño desktop detalles](./public/estructura-src.png.png)
+![Carpeta src](./public/estructura-src.png)
 
 ### Patrones de diseño
 
