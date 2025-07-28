@@ -1,0 +1,8 @@
+{
+  "name": "Salesman Tracker",
+  "short_name": "SalesmanApp",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff"
+}

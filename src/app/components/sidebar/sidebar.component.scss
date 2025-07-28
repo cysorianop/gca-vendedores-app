@@ -1,0 +1,608 @@
+
+.sidebar-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #fafafa;
+  position: relative;
+}
+
+// Header
+.sidebar-header {
+  padding: 20px;
+  background: linear-gradient(135deg, #1976d2 0%, #1565c0 100%);
+  color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  
+  .sidebar-title {
+    margin: 0 0 16px 0;
+    font-size: 18px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    
+    mat-icon {
+      font-size: 20px;
+    }
+  }
+  
+  .stats-summary {
+    display: flex;
+    gap: 16px;
+    
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      
+      .stat-number {
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 1;
+      }
+      
+      .stat-label {
+        font-size: 11px;
+        opacity: 0.9;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      
+      &.active .stat-number {
+        color: #4caf50;
+      }
+      
+      &.inactive .stat-number {
+        color: #ff9800;
+      }
+    }
+  }
+}
+
+// List container
+.salesmen-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  padding-bottom: 80px; // Space for FAB
+}
+
+// Section
+.section {
+  margin-bottom: 24px;
+  
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #666;
+    margin: 0 0 12px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    
+    .section-icon {
+      font-size: 16px;
+      width: 16px;
+      height: 16px;
+      
+      &.active {
+        color: #4caf50;
+      }
+      
+      &.inactive {
+        color: #ff9800;
+      }
+    }
+  }
+}
+
+// Salesman cards
+.salesman-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.salesman-card {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 2px solid transparent;
+  
+  &.clickable:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  &.active-card {
+    border-left: 4px solid #4caf50;
+    
+    &:hover {
+      border-color: #4caf50;
+    }
+  }
+  
+  &.inactive-card {
+    opacity: 0.7;
+    border-left: 4px solid #ff9800;
+    
+    &:hover {
+      opacity: 1;
+      border-color: #ff9800;
+    }
+  }
+  
+  .card-content {
+    padding: 16px !important;
+  }
+}
+
+// Salesman header
+.salesman-header {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 12px;
+  
+  .photo-container {
+    position: relative;
+    
+    .salesman-photo {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #e0e0e0;
+      
+      &.grayscale {
+        filter: grayscale(100%);
+      }
+    }
+    
+    .status-indicator {
+      position: absolute;
+      bottom: 2px;
+      right: 2px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: 2px solid white;
+      
+      &.status-active {
+        background-color: #4caf50;
+      }
+      
+      &.status-inactive {
+        background-color: #f44336;
+      }
+    }
+  }
+  
+  .salesman-info {
+    flex: 1;
+    min-width: 0;
+    
+    .salesman-name {
+      margin: 0 0 4px 0;
+      font-size: 16px;
+      font-weight: 500;
+      color: #212121;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    
+    .salesman-category {
+      margin: 0;
+      font-size: 12px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      
+      &.category-manager {
+        color: #d32f2f;
+      }
+      
+      &.category-senior {
+        color: #1976d2;
+      }
+      
+      &.category-junior {
+        color: #388e3c;
+      }
+      
+      &.category-regular {
+        color: #f57c00;
+      }
+      
+      &.category-default {
+        color: #666;
+      }
+    }
+  }
+}
+
+// Salesman details
+.salesman-details {
+  margin-bottom: 12px;
+  
+  .detail-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+    
+    .detail-icon {
+      font-size: 14px;
+      width: 14px;
+      height: 14px;
+      color: #666;
+    }
+    
+    .detail-text {
+      font-size: 12px;
+      color: #666;
+      flex: 1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}
+
+// Status badge
+.status-badge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  
+  &.status-active {
+    background-color: rgba(76, 175, 80, 0.1);
+    color: #2e7d32;
+  }
+  
+  &.status-inactive {
+    background-color: rgba(244, 67, 54, 0.1);
+    color: #c62828;
+  }
+}
+
+// Empty state
+.empty-state {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  text-align: center;
+  color: #666;
+  
+  .empty-icon {
+    font-size: 64px;
+    width: 64px;
+    height: 64px;
+    color: #ccc;
+    margin-bottom: 16px;
+  }
+  
+  .empty-title {
+    margin: 0 0 8px 0;
+    font-size: 18px;
+    font-weight: 500;
+  }
+  
+  .empty-description {
+    margin: 0;
+    font-size: 14px;
+    color: #999;
+    line-height: 1.4;
+  }
+}
+
+// Add button
+.add-button-container {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  z-index: 100;
+  
+  .add-button {
+    box-shadow: 0 4px 12px rgba(25, 118, 210, 0.3);
+    
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 16px rgba(25, 118, 210, 0.4);
+    }
+  }
+}
+
+// Scrollbar styling
+.salesmen-list {
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 3px;
+    
+    &:hover {
+      background: #a8a8a8;
+    }
+  }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .sidebar-header {
+    padding: 16px;
+    
+    .sidebar-title {
+      font-size: 16px;
+    }
+    
+    .stats-summary {
+      gap: 12px;
+      
+      .stat-item {
+        .stat-number {
+          font-size: 16px;
+        }
+        
+        .stat-label {
+          font-size: 10px;
+        }
+      }
+    }
+  }
+  
+  .salesmen-list {
+    padding: 12px;
+    padding-bottom: 80px;
+  }
+  
+  .salesman-header {
+    .photo-container .salesman-photo {
+      width: 40px;
+      height: 40px;
+    }
+    
+    .salesman-info {
+      .salesman-name {
+        font-size: 14px;
+      }
+      
+      .salesman-category {
+        font-size: 11px;
+      }
+    }
+  }
+  
+  .add-button-container {
+    bottom: 16px;
+    right: 16px;
+  }
+}
+
+@media (max-width: 400px) {
+  .salesman-card .card-content {
+    padding: 12px !important;
+  }
+  
+  .salesman-details .detail-item {
+    .detail-text {
+      font-size: 11px;
+    }
+  }
+}
+
+.sidebar {
+  width: 320px;
+  height: 100%;
+  background: white;
+  border-right: 1px solid #e0e0e0;
+  display: flex;
+  flex-direction: column;
+  
+  .sidebar-header {
+    padding: 16px;
+    border-bottom: 1px solid #e0e0e0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    h3 {
+      margin: 0;
+      color: #333;
+    }
+  }
+  
+  .stats-container {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    
+    .stat-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px;
+      border-radius: 4px;
+      
+      &.total {
+        background: #e3f2fd;
+        color: #1976d2;
+      }
+      
+      &.active {
+        background: #e8f5e8;
+        color: #4caf50;
+      }
+      
+      &.inactive {
+        background: #ffebee;
+        color: #f44336;
+      }
+      
+      .stat-info {
+        display: flex;
+        flex-direction: column;
+        
+        .stat-number {
+          font-size: 18px;
+          font-weight: 600;
+        }
+        
+        .stat-label {
+          font-size: 12px;
+          opacity: 0.8;
+        }
+      }
+    }
+  }
+  
+  .salesmen-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px;
+    
+    .section {
+      margin-bottom: 24px;
+      
+      .section-title {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 12px;
+        font-size: 14px;
+        font-weight: 500;
+        
+        .status-icon {
+          font-size: 16px;
+          
+          &.active {
+            color: #4caf50;
+          }
+          
+          &.inactive {
+            color: #f44336;
+          }
+        }
+      }
+      
+      .salesman-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px;
+        border-radius: 8px;
+        margin-bottom: 8px;
+        border: 1px solid #e0e0e0;
+        
+        &.active {
+          border-left: 4px solid #4caf50;
+        }
+        
+        &.inactive {
+          border-left: 4px solid #f44336;
+          opacity: 0.7;
+        }
+        
+        .salesman-info {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          
+          .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+            mat-icon {
+              color: #666;
+            }
+          }
+          
+          .details {
+            h5 {
+              margin: 0 0 4px 0;
+              font-size: 14px;
+              font-weight: 500;
+            }
+            
+            p {
+              margin: 0;
+              font-size: 12px;
+              color: #666;
+              display: flex;
+              align-items: center;
+              gap: 4px;
+              
+              mat-icon {
+                font-size: 14px;
+              }
+            }
+          }
+        }
+        
+        .actions {
+          display: flex;
+          gap: 4px;
+          
+          .edit-btn {
+            color: #2196f3;
+          }
+          
+          .delete-btn {
+            color: #f44336;
+          }
+        }
+      }
+    }
+  }
+  
+  .empty-state {
+    padding: 40px 16px;
+    text-align: center;
+    color: #666;
+    
+    mat-icon {
+      font-size: 48px;
+      height: 48px;
+      width: 48px;
+      margin-bottom: 16px;
+      opacity: 0.5;
+    }
+    
+    h4 {
+      margin: 0 0 8px 0;
+    }
+    
+    p {
+      margin: 0 0 20px 0;
+      font-size: 14px;
+    }
+  }
+}

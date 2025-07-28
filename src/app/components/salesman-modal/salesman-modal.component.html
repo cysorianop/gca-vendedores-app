@@ -1,0 +1,125 @@
+<div class="modal-container">
+  <!-- Encabezado -->
+  <div class="modal-header">
+    <h1 mat-dialog-title>
+      <mat-icon>{{ isEditMode ? 'edit' : 'person_add' }}</mat-icon>
+      {{ modalTitle }}
+    </h1>
+    <button mat-icon-button (click)="onCancel()" class="close-button">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <!-- Contenido -->
+  <mat-dialog-content class="modal-content">
+    <form [formGroup]="salesmanForm" (ngSubmit)="onSubmit()">
+      <!-- ID -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>ID del Vendedor</mat-label>
+        <input matInput formControlName="id" [readonly]="isEditMode" placeholder="Ej: VEN001">
+        <button *ngIf="!isEditMode" mat-icon-button matSuffix type="button" (click)="generateId()" matTooltip="Generar ID">
+          <mat-icon>auto_fix_high</mat-icon>
+        </button>
+        <mat-error *ngIf="salesmanForm.get('id')?.invalid && salesmanForm.get('id')?.touched">
+          El ID es obligatorio
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Nombre -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="name" placeholder="Ej: Juan Pérez">
+        <mat-icon matSuffix>person</mat-icon>
+        <mat-error *ngIf="salesmanForm.get('name')?.invalid && salesmanForm.get('name')?.touched">
+          El nombre es obligatorio
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Categoría -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Categoría</mat-label>
+        <mat-select formControlName="category">
+          <mat-option *ngFor="let category of categories" [value]="category.value">
+            {{ category.label }}
+          </mat-option>
+        </mat-select>
+        <mat-icon matSuffix>work</mat-icon>
+        <mat-error *ngIf="salesmanForm.get('category')?.invalid && salesmanForm.get('category')?.touched">
+          Seleccione una categoría
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Dirección -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Dirección</mat-label>
+        <textarea matInput formControlName="address" rows="2" placeholder="Ej: Calle 123 #45-67, Bogotá"></textarea>
+        <mat-icon matSuffix>location_on</mat-icon>
+        <mat-error *ngIf="salesmanForm.get('address')?.invalid && salesmanForm.get('address')?.touched">
+          La dirección es obligatoria
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Vehículo -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Vehículo</mat-label>
+        <mat-select formControlName="vehicle">
+          <mat-option *ngFor="let vehicle of vehicles" [value]="vehicle">
+            {{ vehicle }}
+          </mat-option>
+        </mat-select>
+        <mat-icon matSuffix>directions_car</mat-icon>
+        <mat-error *ngIf="salesmanForm.get('vehicle')?.invalid && salesmanForm.get('vehicle')?.touched">
+          Seleccione un vehículo
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Foto -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Foto de Perfil</mat-label>
+        <mat-select formControlName="photo">
+          <mat-option *ngFor="let photo of photoOptions" [value]="photo.value">
+            <div class="photo-option">
+              <img [src]="'assets/images/photos/' + photo.value" alt="{{ photo.label }}" class="photo-preview">
+              <span>{{ photo.label }}</span>
+            </div>
+          </mat-option>
+        </mat-select>
+        <mat-icon matSuffix>photo</mat-icon>
+        <mat-error *ngIf="salesmanForm.get('photo')?.invalid && salesmanForm.get('photo')?.touched">
+          Seleccione una foto
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Vista previa -->
+      <mat-card *ngIf="salesmanForm.valid" class="preview-card">
+        <mat-card-header>
+          <mat-card-title>
+            <mat-icon>preview</mat-icon>
+            Vista Previa
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="preview-content">
+          <img [src]="'assets/images/photos/' + salesmanForm.get('photo')?.value" class="preview-image" alt="Foto">
+          <div class="preview-details">
+            <strong>{{ salesmanForm.get('name')?.value }}</strong><br>
+            {{ salesmanForm.get('category')?.value }}<br>
+            <mat-icon>location_on</mat-icon> {{ salesmanForm.get('address')?.value }}<br>
+            <mat-icon>directions_car</mat-icon> {{ salesmanForm.get('vehicle')?.value }}
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </form>
+  </mat-dialog-content>
+
+  <!-- Botones -->
+  <mat-dialog-actions align="end">
+    <button mat-button (click)="onCancel()" [disabled]="isLoading">
+      Cancelar
+    </button>
+    <button mat-raised-button color="primary" [disabled]="!salesmanForm.valid || isLoading" (click)="onSubmit()">
+      <mat-spinner *ngIf="isLoading" diameter="20"></mat-spinner>
+      <mat-icon *ngIf="!isLoading">{{ isEditMode ? 'save' : 'add' }}</mat-icon>
+      {{ isEditMode ? 'Guardar' : 'Agregar' }}
+    </button>
+  </mat-dialog-actions>
+</div>

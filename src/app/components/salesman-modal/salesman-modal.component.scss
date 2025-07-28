@@ -1,0 +1,363 @@
+.modal-container {
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh;
+  min-width: 400px;
+}
+
+// Header
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px 16px;
+  border-bottom: 1px solid #e0e0e0;
+  
+  .modal-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0;
+    font-size: 20px;
+    font-weight: 500;
+    color: #1976d2;
+    
+    .title-icon {
+      font-size: 24px;
+      width: 24px;
+      height: 24px;
+    }
+  }
+  
+  .close-button {
+    color: #666;
+    
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.04);
+    }
+  }
+}
+
+// Content
+.modal-content {
+  flex: 1;
+  padding: 20px 24px;
+  overflow-y: auto;
+  
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 3px;
+    
+    &:hover {
+      background: #a8a8a8;
+    }
+  }
+}
+
+// Form
+.salesman-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-row {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  
+  .full-width {
+    flex: 1;
+  }
+}
+
+// Photo option in select
+.photo-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  
+  .photo-preview {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid #ddd;
+  }
+}
+
+// Photo preview container
+.photo-preview-container {
+  display: flex;
+  justify-content: center;
+  margin-left: 16px;
+  
+  .selected-photo-preview {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #1976d2;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+}
+
+// Form summary
+.form-summary {
+  margin-top: 20px;
+  
+  .summary-card {
+    background: linear-gradient(135deg, #f5f5f5 0%, #e8f4fd 100%);
+    border: 1px solid #e0e0e0;
+    
+    .summary-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 16px;
+      color: #1976d2;
+      
+      mat-icon {
+        font-size: 18px;
+        width: 18px;
+        height: 18px;
+      }
+    }
+    
+    .summary-content {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      
+      .summary-photo {
+        .summary-avatar {
+          width: 60px;
+          height: 60px;
+          border-radius: 50%;
+          object-fit: cover;
+          border: 2px solid #1976d2;
+        }
+      }
+      
+      .summary-info {
+        flex: 1;
+        
+        h4 {
+          margin: 0 0 4px 0;
+          font-size: 16px;
+          font-weight: 500;
+          color: #212121;
+        }
+        
+        .summary-category {
+          margin: 0 0 8px 0;
+          font-size: 13px;
+          font-weight: 500;
+          color: #1976d2;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+        }
+        
+        .summary-detail {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          margin: 4px 0;
+          font-size: 13px;
+          color: #666;
+          
+          mat-icon {
+            font-size: 16px;
+            width: 16px;
+            height: 16px;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Actions
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 16px 24px 20px;
+  border-top: 1px solid #e0e0e0;
+  background-color: #fafafa;
+  
+  .cancel-button {
+    min-width: 100px;
+    color: #666;
+    
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.04);
+    }
+  }
+  
+  .submit-button {
+    min-width: 120px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    
+    .button-spinner {
+      margin: 0;
+    }
+    
+    .button-text {
+      flex: 1;
+    }
+    
+    &:disabled {
+      opacity: 0.6;
+    }
+  }
+}
+
+// Material form field customizations
+::ng-deep {
+  .mat-mdc-form-field {
+    .mat-mdc-text-field-wrapper {
+      .mat-mdc-form-field-flex {
+        .mat-mdc-form-field-infix {
+          min-height: 56px;
+        }
+      }
+    }
+    
+    &.mat-form-field-appearance-outline {
+      .mat-mdc-form-field-outline {
+        .mat-mdc-form-field-outline-thick {
+          .mat-mdc-form-field-outline-start,
+          .mat-mdc-form-field-outline-end,
+          .mat-mdc-form-field-outline-gap {
+            border-width: 2px;
+          }
+        }
+      }
+    }
+  }
+  
+  .mat-mdc-select-panel {
+    .photo-option {
+      padding: 8px 0;
+    }
+  }
+  
+  // Error styling
+  .mat-mdc-form-field.mat-form-field-invalid {
+    .mat-mdc-form-field-outline-thick {
+      .mat-mdc-form-field-outline-start,
+      .mat-mdc-form-field-outline-end,
+      .mat-mdc-form-field-outline-gap {
+        border-color: #f44336;
+      }
+    }
+  }
+}
+
+// Animations
+.modal-container {
+  animation: slideInUp 0.3s ease-out;
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.form-summary {
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+// Responsive design
+@media (max-width: 600px) {
+  .modal-container {
+    min-width: unset;
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    max-height: 100%;
+  }
+  
+  .modal-header {
+    padding: 16px 20px 12px;
+    
+    .modal-title {
+      font-size: 18px;
+      
+      .title-icon {
+        font-size: 20px;
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+  
+  .modal-content {
+    padding: 16px 20px;
+  }
+  
+  .form-row {
+    flex-direction: column;
+    gap: 0;
+    
+    .photo-preview-container {
+      margin-left: 0;
+      margin-top: 12px;
+    }
+  }
+  
+  .summary-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 12px;
+  }
+  
+  .modal-actions {
+    padding: 12px 20px 16px;
+    flex-direction: column-reverse;
+    gap: 8px;
+    
+    .cancel-button,
+    .submit-button {
+      width: 100%;
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  .modal-header {
+    padding: 12px 16px 8px;
+  }
+  
+  .modal-content {
+    padding: 12px 16px;
+  }
+  
+  .modal-actions {
+    padding: 8px 16px 12px;
+  }
+}

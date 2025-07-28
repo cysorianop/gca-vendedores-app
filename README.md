@@ -1,59 +1,228 @@
-# SalesmanTracker
+# Sistema de Seguimiento de Vendedores
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.1.3.
+Sistema web desarrollado en Angular para el seguimiento de vendedores con vehículos asignados. La aplicación permite visualizar vendedores en un mapa de Google, gestionar su información y realizar seguimiento en tiempo real de sus ubicaciones.
 
-## Development server
+---
 
-To start a local development server, run:
+## Descripción del Proyecto
+
+- Mapa Interactivo: Visualización de vendedores en Google Maps con pines personalizados
+- Lista de Vendedores: Panel lateral con información detallada de cada vendedor
+- Gestión de Vendedores: Creación de nuevos vendedores mediante modal
+- Seguimiento en Tiempo Real: Actualización automática de coordenadas
+- Interfaz Responsiva: Diseño adaptable a diferentes dispositivos
+- Navegación por Pestañas: Múltiples vistas organizadas
+
+---
+
+## Arquitectura Propuesta
+
+### Visión General
+
+La aplicación sigue una arquitectura modular basada en componentes y servicios, lo cual permite mantener el código organizado, reutilizable y escalable. Está estructurada siguiendo principios de separación de responsabilidades (SoC) y buenas prácticas recomendadas por Angular.
+
+### Estructura por responsabilidades:
+
+Presentación (UI): Componentes visuales ubicados en src/app/components, cada uno especializado en una función (mapa, listado, encabezado, sidebar, modal).
+
+- Servicios (Data Layer): Ubicados en src/app/services, contienen la lógica de negocio, llamadas HTTP a la API y transformación de datos.
+
+- Modelos: En src/app/models, definen interfaces fuertemente tipadas para mantener integridad de datos.
+
+- Configuración y entorno: Gestión de variables en environments/ y conexión con Google Maps API.
+
+- Routing: Control de vistas y navegación usando Angular Router con vistas por pestañas.
+
+- Responsive Design: Implementado mediante clases personalizadas de SCSS y Bootstrap.
+
+### Estructura del Proyecto
+
+Estructura general de carpetas:
+
+![Diseño desktop](./public/estructura-general.png.png)
+
+Estructura carpeta src:
+
+![Diseño desktop detalles](./public/estructura-src.png.png)
+
+### Patrones de diseño
+
+- **Singleton (Angular Services)**
+- **Observer (RxJS)**
+- **Factory Pattern (implícito en creación de pines)** 
+
+---
+
+## Tecnologías Utilizadas
+
+### Frontend
+
+- Angular 17+: Framework principal
+- TypeScript: Lenguaje de programación
+- Google Maps API: Integración de mapas
+- Angular Material: Componentes UI
+- RxJS: Programación reactiva
+- Bootstrap: Estilos complementarios
+
+### Herramientas y DevOps
+
+- GitHub Actions (propuesto para CI/CD)
+
+---
+
+## Instalación y configuración
+
+### Requisitos
+
+- Node.js (v18 o superior)
+- npm (v9 o superior)
+- Angular CLI (v17 o superior)
+
+### Pasos
 
 ```bash
+# 1. Clona el repositorio
+git clone https://github.com/cysorianop/gca-vendedores-app.git
+cd gca-vendedores-app
+
+# 2. Instala las dependencias
+npm install
+
+# 3. Configurar Google Maps API
+- Obtener API key en Google Cloud Console
+- Habilitar Maps JavaScript API
+- Agregar la clave en src/index.html
+
+# 4. Corre la app
 ng serve
+
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+---
 
-## Code scaffolding
+## Configuración del API
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+### Endpoints Disponibles
+
+Base URL: http://52.188.225.26
+
+1. Obtener lista de vendedores
+
+GET /api/salesman
+Retorna array de vendedores
+
+2. Obtener vendedor específico
+
+GET /api/salesman/{id}
+Retorna información de un vendedor
+
+3. Crear nuevo vendedor
+
+POST /api/salesman
+Crea un nuevo vendedor
+
+---
+
+### Modelo de datos
 
 ```bash
-ng generate component component-name
+export interface Coordinates {
+  latitude: number;
+  longitude: number;
+  height: number;
+}
+
+export interface Salesman {
+  id: string;
+  name: string;
+  category: string;
+  address: string;
+  isActive: boolean;
+  coordinates: Coordinates;
+  photo: string;
+  vehicle: string;
+}
+
+export interface CreateSalesmanRequest {
+  id: string;
+  name: string;
+  category: string;
+  address: string;
+  photo: string;
+  vehicle: string;
+}
+
+export enum SalesmanCategory {
+  GERENTE = 'Gerente',
+  VENDEDOR_SENIOR = 'Vendedor Senior',
+  VENDEDOR_JUNIOR = 'Vendedor Junior',
+  VENDEDOR = 'Vendedor'
+}
+
+export interface MarkerInfo {
+  salesman: Salesman;
+  marker?: google.maps.Marker;
+  infoWindow?: google.maps.InfoWindow;
+}
+
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+---
 
-```bash
-ng generate --help
-```
+## Diseño de Referencia
 
-## Building
+Vista de escritorio:
 
-To build the project run:
+![Diseño](./public/vista%20escritorio.png)
 
-```bash
-ng build
-```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Vista responsive:
 
-## Running unit tests
+![Diseño](./public/vista%20responsive.png)
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+## Cómo se resolvió el reto
 
-```bash
-ng test
-```
+1. Integración de Google Maps API
+Reto: Integrar correctamente el mapa de Google con múltiples pines personalizados y comportamiento interactivo.
+Solución:
 
-## Running end-to-end tests
+Se utilizó el paquete @angular/google-maps, que ofrece componentes ya integrados para Angular.
 
-For end-to-end (e2e) testing, run:
+Se creó una lógica dinámica para asignar pines personalizados (rojo, azul, verde, amarillo) según la categoría del vendedor.
 
-```bash
-ng e2e
-```
+Se manejaron los eventos del mapa (markerClick, infoWindow) para brindar una experiencia interactiva fluida.
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+2. Actualización en Tiempo Real
+Reto: Mantener las ubicaciones de los vendedores actualizadas sin recargar la página.
+Solución:
 
-## Additional Resources
+Se implementó un sistema de polling utilizando setInterval() que cada 30 segundos hace una nueva petición a la API (getSalesmen()).
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Al recibir la nueva data, se actualizan los marcadores en el mapa sin recargar la aplicación.
+
+Se manejó limpieza de memoria para evitar múltiples intervalos o fugas.
+
+---
+
+## Cuellos de botella encontrados
+
+- Integración de Google Maps con API Key protegida por entorno.
+
+- Gestión y actualización de múltiples ubicaciones dinámicamente.
+
+- Validaciones de formularios reactivas con retroalimentación visual.
+
+- Control de estado y diseño responsivo con Angular Material y Bootstrap combinados.
+
+- Modularidad y limpieza del código para facilitar pruebas unitarias.
+
+
+# Contribución
+
+- Crea una rama: feature/tu-cambio
+- Haz tus cambios con tests
+- Crea un Pull Request con descripción clara
+
+# Estándares
+- Código limpio
+- Commits descriptivos

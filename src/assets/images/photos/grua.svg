@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="46" height="46" viewBox="0 0 46 46">
+  <g id="Group_6279" data-name="Group 6279" transform="translate(-11302 -15561)">
+    <g id="Group_6245" data-name="Group 6245" transform="translate(56)">
+      <g id="Group_6243" data-name="Group 6243" transform="translate(53 2)">
+        <g id="Group_6241" data-name="Group 6241" transform="translate(55 -1)">
+          <g id="Group_6239" data-name="Group 6239" transform="translate(55 1)">
+            <g id="Ellipse_644" data-name="Ellipse 644" transform="translate(11083 15559)" fill="#2d344d" stroke="#2d344d" stroke-width="1">
+              <circle cx="23" cy="23" r="23" stroke="none"/>
+              <circle cx="23" cy="23" r="22.5" fill="none"/>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+    <g id="Grupo_6155" data-name="Grupo 6155" transform="translate(10215 15282.181)">
+      <g id="Grupo_6153" data-name="Grupo 6153" transform="translate(1095.022 294.995)">
+        <g id="Grupo_6118" data-name="Grupo 6118" transform="translate(0 0)">
+          <g id="Grupo_6117" data-name="Grupo 6117" transform="translate(0)">
+            <g id="Unión_514" data-name="Unión 514" transform="translate(0)">
+              <path id="Path_2947" data-name="Path 2947" d="M27.156,15.923c-3.387,0-8.239-.453-8.287-.458l-.031,0H1.356a.856.856,0,1,1,0-1.712H19.469V4.583c.223,0,.495,0,.8,0,4.166,0,5.747.262,6.035.42a43.346,43.346,0,0,1,3.6,5.693l.027.047h0c.079.159.631,1.45-.045,4.98A10.988,10.988,0,0,1,27.156,15.923Z" transform="translate(0.164 -3.917)" fill="#fff"/>
+              <path id="Path_2948" data-name="Path 2948" d="M27.318,15.423a16.75,16.75,0,0,0,2.158-.1c.495-2.882.085-3.979.031-4.107l-.019-.033A52.917,52.917,0,0,0,26.1,5.732a28.588,28.588,0,0,0-5.666-.327h-.136v9.171H1.519a.193.193,0,0,0-.195.191.2.2,0,0,0,.195.2H19.031l.062.006c.048,0,4.87.455,8.225.455m0,1.325c-3.459,0-8.349-.461-8.349-.461H1.519a1.519,1.519,0,1,1,0-3.037h17.45V4.092s7.068-.141,7.906.549,3.768,5.89,3.768,5.89.9,1.311,0,5.758C30.419,16.633,29.048,16.749,27.318,16.749Z" transform="translate(0.001 -4.08)" fill="#fff"/>
+            </g>
+            <g id="Elipse_623" data-name="Elipse 623" transform="translate(3.407 8.784)" fill="#fff" stroke="#2d344d" stroke-width="1">
+              <circle cx="3.943" cy="3.943" r="3.943" stroke="none"/>
+              <circle cx="3.943" cy="3.943" r="3.443" fill="none"/>
+            </g>
+            <g id="Elipse_624" data-name="Elipse 624" transform="translate(20.25 8.727)" fill="#fff" stroke="#2d344d" stroke-width="1">
+              <circle cx="3.943" cy="3.943" r="3.943" stroke="none"/>
+              <circle cx="3.943" cy="3.943" r="3.443" fill="none"/>
+            </g>
+          </g>
+        </g>
+        <path id="Trazado_2909" data-name="Trazado 2909" d="M-.347-.017A17.466,17.466,0,0,1,3.316.225,17.325,17.325,0,0,1,4.843,2.61,6.438,6.438,0,0,1,5.535,5.1,12.62,12.62,0,0,0-.347,4.933C-.349,4.88-.347-.017-.347-.017Z" transform="translate(22.418 1.329)" fill="#2d344d"/>
+      </g>
+      <g id="Trazado_2935" data-name="Trazado 2935" transform="matrix(0.857, 0.515, -0.515, 0.857, 1098.975, 290.819)">
+        <path id="Path_2949" data-name="Path 2949" d="M14.721,5.107.877,2.562.818,2.551H.757A.812.812,0,0,1,0,1.7.812.812,0,0,1,.757.84H.792L16.629,0l1.6,2.852Z" transform="translate(0.663 0.683)" fill="#fff"/>
+        <path id="Path_2950" data-name="Path 2950" d="M16.916,1.367l-15.5.819c-.019,0-.095.062-.095.193s.076.193.095.193h.121l13.706,2.52,2.764-1.776L16.916,1.367M17.668,0l2.11,3.755L15.522,6.49,1.42,3.9A1.472,1.472,0,0,1,0,2.379,1.472,1.472,0,0,1,1.42.861Z" transform="translate(0 0)" fill="#fff"/>
+      </g>
+      <g id="Grupo_6154" data-name="Grupo 6154" transform="translate(1095 296.36)">
+        <circle id="Elipse_627" data-name="Elipse 627" cx="1.988" cy="1.988" r="1.988" fill="#fff"/>
+        <circle id="Elipse_628" data-name="Elipse 628" cx="1.325" cy="1.325" r="1.325" transform="translate(0.663 0.663)" fill="#fff"/>
+        <rect id="Rectángulo_1922" data-name="Rectángulo 1922" width="2.65" height="2.65" fill="#2d344d"/>
+      </g>
+      <rect id="Rectángulo_1923" data-name="Rectángulo 1923" width="4.463" height="1.569" rx="0.592" transform="translate(1098.976 293.427) rotate(90)" fill="#fff"/>
+    </g>
+  </g>
+</svg>

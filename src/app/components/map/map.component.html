@@ -1,0 +1,73 @@
+<script src="https://maps.googleapis.com/maps/api/js?key=TU_API_KEY" defer></script>
+
+<div class="map-wrapper">
+  <div class="map-header">
+    <h2>
+      <mat-icon>map</mat-icon>
+      Ubicaciones de Vendedores
+    </h2>
+  </div>
+
+  <google-map
+    [height]="'500px'"
+    [width]="'100%'"
+    [center]="center"
+    [zoom]="zoom"
+  >
+    <map-marker
+      *ngFor="let salesman of salesmen; let i = index"
+      [position]="{
+        lat: salesman.coordinates.latitude,
+        lng: salesman.coordinates.longitude
+      }"
+      [label]="salesman.name"
+      [icon]="getMarkerIcon(salesman.isActive)"
+      (mapClick)="openInfoWindow(i)"
+    >
+    </map-marker>
+
+    <map-info-window
+      #infoWin="mapInfoWindow"
+      (mapReady)="setInfoWindow(infoWin)"
+    >
+      <ng-container *ngIf="selectedSalesman">
+        <strong>{{ selectedSalesman.name }}</strong
+        ><br />
+        <small
+          ><mat-icon>category</mat-icon> {{ selectedSalesman.category }}</small
+        ><br />
+        <small
+          ><mat-icon>location_on</mat-icon>
+          {{ selectedSalesman.address }}</small
+        ><br />
+        <small
+          ><mat-icon>directions_car</mat-icon>
+          {{ selectedSalesman.vehicle }}</small
+        ><br />
+        <small>
+          <span [ngClass]="selectedSalesman.isActive ? 'active' : 'inactive'">
+            {{ selectedSalesman.isActive ? "Activo" : "Inactivo" }}
+          </span>
+        </small>
+      </ng-container>
+    </map-info-window>
+  </google-map>
+
+  <div class="status-info" *ngIf="salesmen.length > 0">
+    <mat-card class="stat-card active">
+      <mat-icon>check_circle</mat-icon>
+      <div>
+        <span class="stat-number">{{ activeSalesmenCount }}</span>
+        <span class="label">Activos</span>
+      </div>
+    </mat-card>
+
+    <mat-card class="stat-card inactive">
+      <mat-icon>cancel</mat-icon>
+      <div>
+        <span class="stat-number">{{ inactiveSalesmenCount }}</span>
+        <span class="label">Inactivos</span>
+      </div>
+    </mat-card>
+  </div>
+</div>

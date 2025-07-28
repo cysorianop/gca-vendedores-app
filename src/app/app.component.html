@@ -1,0 +1,43 @@
+<!-- Loading Spinner -->
+@if (isLoading) {
+  <div class="loading-container">
+    <mat-spinner></mat-spinner>
+    <p>Cargando datos de vendedores...</p>
+  </div>
+}
+
+<!-- Main Content -->
+@if (!isLoading) {
+  <div class="content-wrapper">
+    <!-- Header -->
+    <app-header (tabChange)="onTabChange($event)"></app-header>
+    
+    <!-- Main Layout -->
+    <div class="main-layout">
+      <!-- Sidebar -->
+      <app-sidebar></app-sidebar>
+      
+      <!-- Content Area -->
+      <div class="content-area">
+        @switch (selectedTabIndex) {
+          @case (0) {
+            <div class="map-container">
+              <app-map></app-map>
+            </div>
+          }
+          @case (1) {
+            <div class="tab-content-container">
+              <app-tab-content></app-tab-content>
+            </div>
+          }
+          @default {
+            <div class="default-content">
+              <h2>Selecciona una pestaña</h2>
+              <p>Elige el mapa o el dashboard para ver la información de los vendedores.</p>
+            </div>
+          }
+        }
+      </div>
+    </div>
+  </div>
+}

@@ -1,0 +1,86 @@
+<div class="tab-content-wrapper">
+  <!-- Dashboard Content -->
+  <div class="dashboard-container">
+    <!-- Header -->
+    <div class="dashboard-header">
+      <h2>
+        <mat-icon>dashboard</mat-icon>
+        Dashboard de Ventas
+      </h2>
+      <p>Resumen general de la actividad de vendedores</p>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="stats-grid">
+      <ng-container *ngFor="let card of dashboardCards; trackBy: trackByTitle">
+        <mat-card class="stat-card" [ngClass]="card.color">
+          <div class="card-content">
+            <div class="card-icon">
+              <mat-icon>{{ card.icon }}</mat-icon>
+            </div>
+            <div class="card-info">
+              <h3>{{ card.value }}</h3>
+              <p>{{ card.title }}</p>
+              <span class="change">{{ card.change }}</span>
+            </div>
+          </div>
+        </mat-card>
+      </ng-container>
+    </div>
+
+    <!-- Charts Section -->
+    <div class="charts-section">
+      <mat-card class="chart-card">
+        <div class="card-header">
+          <h3>
+            <mat-icon>bar_chart</mat-icon>
+            Ventas por Vendedor
+          </h3>
+        </div>
+        <div class="chart-container">
+          <div class="chart-bars">
+            <ng-container *ngFor="let data of chartData; trackBy: trackByMonth">
+              <div class="bar-container">
+                <div class="bar" [style.height.px]="data.sales * 2">
+                  <span class="bar-value">{{ data.sales }}</span>
+                </div>
+                <span class="bar-label">{{ data.month }}</span>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </mat-card>
+
+      <!-- Recent Activities -->
+      <mat-card class="activities-card">
+        <div class="card-header">
+          <h3>
+            <mat-icon>history</mat-icon>
+            Actividad Reciente
+          </h3>
+        </div>
+        <div class="activities-list">
+          <ng-container *ngFor="let activity of recentActivities; trackBy: trackById">
+            <div class="activity-item" [ngClass]="activity.type">
+              <div class="activity-icon">
+                <mat-icon>{{ activity.icon }}</mat-icon>
+              </div>
+              <div class="activity-content">
+                <h4>{{ activity.salesman }}</h4>
+                <p>{{ activity.action }}</p>
+                <span class="activity-time">{{ activity.time }}</span>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+
+        <div class="card-actions">
+          <button mat-button color="primary">
+            <mat-icon>visibility</mat-icon>
+            Ver Todo
+          </button>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>

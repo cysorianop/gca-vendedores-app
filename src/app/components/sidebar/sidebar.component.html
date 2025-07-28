@@ -1,0 +1,121 @@
+<div class="sidebar">
+
+  <!-- Header -->
+  <div class="sidebar-header">
+    <h3>Vendedores</h3>
+    <button mat-icon-button color="primary" (click)="openSalesmanModal()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats-container">
+    <div class="stat-item total">
+      <mat-icon>people</mat-icon>
+      <div class="stat-info">
+        <span class="stat-number">{{ salesmenStats.total }}</span>
+        <span class="stat-label">Total</span>
+      </div>
+    </div>
+
+    <div class="stat-item active">
+      <mat-icon>check_circle</mat-icon>
+      <div class="stat-info">
+        <span class="stat-number">{{ salesmenStats.active }}</span>
+        <span class="stat-label">Activos</span>
+      </div>
+    </div>
+
+    <div class="stat-item inactive" *ngIf="salesmenStats.inactive > 0">
+      <mat-icon>cancel</mat-icon>
+      <div class="stat-info">
+        <span class="stat-number">{{ salesmenStats.inactive }}</span>
+        <span class="stat-label">Inactivos</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Salesmen List -->
+  <div class="salesmen-list" *ngIf="salesmen.length > 0">
+    <!-- Active Salesmen -->
+    <div class="section" *ngIf="activeSalesmen.length > 0">
+      <h4 class="section-title">
+        <mat-icon class="status-icon active">check_circle</mat-icon>
+        Vendedores Activos
+      </h4>
+
+      <div class="salesman-item active" *ngFor="let salesman of activeSalesmen; trackBy: trackById">
+        <div class="salesman-info">
+          <div class="avatar">
+            <mat-icon>person</mat-icon>
+          </div>
+          <div class="details">
+            <h5>{{ salesman.name }}</h5>
+            <p class="location">
+              <mat-icon>location_on</mat-icon>
+              {{ salesman.address }}
+            </p>
+            <p class="sales">
+              <mat-icon>trending_up</mat-icon>
+              {{ salesman.category }} ventas
+            </p>
+          </div>
+        </div>
+        <div class="actions">
+          <button mat-icon-button class="edit-btn" (click)="openSalesmanModal(salesman)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button class="delete-btn" (click)="deleteSalesman(salesman)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Inactive Salesmen -->
+    <div class="section" *ngIf="inactiveSalesmen.length > 0">
+      <h4 class="section-title">
+        <mat-icon class="status-icon inactive">cancel</mat-icon>
+        Vendedores Inactivos
+      </h4>
+
+      <div class="salesman-item inactive" *ngFor="let salesman of inactiveSalesmen; trackBy: trackById">
+        <div class="salesman-info">
+          <div class="avatar">
+            <mat-icon>person</mat-icon>
+          </div>
+          <div class="details">
+            <h5>{{ salesman.name }}</h5>
+            <p class="location">
+              <mat-icon>location_on</mat-icon>
+              {{ salesman.address }}
+            </p>
+            <p class="sales">
+              <mat-icon>trending_down</mat-icon>
+              {{ salesman.category }} ventas
+            </p>
+          </div>
+        </div>
+        <div class="actions">
+          <button mat-icon-button class="edit-btn" (click)="openSalesmanModal(salesman)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button class="delete-btn" (click)="deleteSalesman(salesman)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Empty State -->
+  <div class="empty-state" *ngIf="salesmen.length === 0">
+    <mat-icon>person_add</mat-icon>
+    <h4>No hay vendedores</h4>
+    <p>Agrega tu primer vendedor para comenzar</p>
+    <button mat-raised-button color="primary" (click)="openSalesmanModal()">
+      <mat-icon>add</mat-icon>
+      Agregar Vendedor
+    </button>
+  </div>
+</div>

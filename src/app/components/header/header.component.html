@@ -1,0 +1,35 @@
+<mat-toolbar color="primary" class="header-toolbar">
+  <div class="toolbar-content">
+    
+    <!-- Logo y título -->
+    <div class="logo-section">
+      <mat-icon class="logo-icon">location_on</mat-icon>
+      <span class="title">{{ title }}</span>
+    </div>
+
+    <!-- Navegación con tab links -->
+    <nav mat-tab-nav-bar class="tabs-section">
+      <a
+        mat-tab-link
+        *ngFor="let tab of tabs; let i = index"
+        [routerLink]="tab.route"
+        [active]="selectedTabIndex === i"
+        (click)="onTabChange(i)"
+      >
+        <mat-icon class="tab-icon">{{ tab.icon }}</mat-icon>
+        <span class="tab-label">{{ tab.label }}</span>
+      </a>
+    </nav>
+
+    <!-- Botones de acción -->
+    <div class="actions-section">
+      <button mat-icon-button (click)="onRefresh()" matTooltip="Actualizar datos">
+        <mat-icon>refresh</mat-icon>
+      </button>
+      <button mat-icon-button matTooltip="Configuración">
+        <mat-icon>settings</mat-icon>
+      </button>
+    </div>
+    
+  </div>
+</mat-toolbar>

@@ -1,0 +1,135 @@
+.header-toolbar {
+  height: 64px;
+  padding: 0 16px;
+  background-color: #3f51b5; // Azul Angular Material
+  color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.toolbar-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+}
+
+// Logo e ícono
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  .logo-icon {
+    font-size: 28px;
+    color: #fff;
+  }
+
+  .title {
+    font-size: 18px;
+    font-weight: 500;
+    color: #fff;
+    white-space: nowrap;
+  }
+}
+
+// Tabs
+.tabs-section {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  max-width: 500px;
+
+  ::ng-deep .mat-mdc-tab-label-content {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: rgba(255, 255, 255, 0.7);
+
+    .tab-icon {
+      font-size: 18px;
+    }
+
+    .tab-label {
+      font-size: 14px;
+    }
+  }
+
+  ::ng-deep .mdc-tab--active .mat-mdc-tab-label-content {
+    color: #fff;
+  }
+
+  ::ng-deep .mat-ink-bar {
+    background-color: #fff;
+    height: 3px;
+    border-radius: 2px;
+  }
+}
+
+// Acciones (ej. botón refrescar)
+.actions-section {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  button {
+    color: #fff;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    mat-icon {
+      font-size: 20px;
+    }
+  }
+
+  .refresh-button:active mat-icon {
+    animation: spin 0.5s linear;
+  }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .toolbar-content {
+    padding: 0 8px;
+  }
+
+  .logo-section .title {
+    font-size: 16px;
+  }
+
+  .tabs-section {
+    max-width: 300px;
+  }
+
+  ::ng-deep .mat-mdc-tab {
+    min-width: 80px;
+
+    .tab-label {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .header-toolbar {
+    height: 56px;
+  }
+
+  .logo-section .title {
+    font-size: 14px;
+  }
+
+  .actions-section .settings-button {
+    display: none;
+  }
+}

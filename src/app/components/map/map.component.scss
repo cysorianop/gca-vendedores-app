@@ -1,0 +1,530 @@
+.map-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+// Map controls
+.map-controls {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  
+  .control-button {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    
+    &:hover {
+      transform: scale(1.05);
+      transition: transform 0.2s ease;
+    }
+  }
+}
+
+// Map legend
+.map-legend {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  min-width: 160px;
+  
+  .legend-title {
+    margin: 0 0 12px 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .legend-items {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: #666;
+    
+    .legend-pin {
+      width: 20px;
+      height: 20px;
+      object-fit: contain;
+    }
+  }
+}
+
+// Status info
+// Status info
+.status-info {
+  position: absolute;
+  bottom: 100px; // 🟢 Nueva posición
+  left: 20px;
+  background: rgba(33, 150, 243, 0.9);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+
+  .status-icon {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+  }
+}
+
+
+// No data message
+.no-data-message {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #666;
+  z-index: 1000;
+  
+  .no-data-icon {
+    font-size: 64px;
+    width: 64px;
+    height: 64px;
+    color: #ccc;
+    margin-bottom: 16px;
+  }
+  
+  h3 {
+    margin: 0 0 8px 0;
+    font-size: 18px;
+    font-weight: 500;
+  }
+  
+  p {
+    margin: 0;
+    font-size: 14px;
+    color: #999;
+  }
+}
+
+// Info Window Styles (Global)
+:host ::ng-deep {
+  .info-window-content {
+    max-width: 280px;
+    font-family: 'Roboto', sans-serif;
+    
+    .salesman-header {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 12px;
+      
+      .salesman-photo {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid #ddd;
+      }
+      
+      .salesman-info {
+        flex: 1;
+        
+        .salesman-name {
+          margin: 0 0 4px 0;
+          font-size: 16px;
+          font-weight: 600;
+          color: #333;
+        }
+        
+        .salesman-category {
+          margin: 0 0 6px 0;
+          font-size: 13px;
+          color: #666;
+        }
+        
+        .status-badge {
+          display: inline-block;
+          padding: 2px 8px;
+          border-radius: 12px;
+          font-size: 11px;
+          font-weight: 500;
+          text-transform: uppercase;
+          
+          &.active {
+            background-color: #e8f5e8;
+            color: #2e7d32;
+          }
+          
+          &.inactive {
+            background-color: #ffebee;
+            color: #c62828;
+          }
+        }
+      }
+    }
+    
+    .salesman-details {
+      margin-bottom: 12px;
+      
+      p {
+        margin: 0 0 4px 0;
+        font-size: 13px;
+        color: #555;
+        
+        strong {
+          color: #333;
+        }
+      }
+    }
+    
+    .info-window-actions {
+      text-align: center;
+      
+      .view-details-btn {
+        background-color: #1976d2;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 4px;
+        font-size: 13px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+        
+        &:hover {
+          background-color: #1565c0;
+        }
+      }
+    }
+  }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .map-controls {
+    top: 10px;
+    right: 10px;
+    gap: 8px;
+  }
+
+  .map-legend {
+    bottom: 10px;
+    left: 10px;
+    padding: 12px;
+    min-width: 140px;
+
+    .legend-title {
+      font-size: 13px;
+    }
+
+    .legend-item {
+      font-size: 11px;
+      gap: 6px;
+
+      .legend-pin {
+        width: 16px;
+        height: 16px;
+      }
+    }
+  }
+
+  .status-info {
+    bottom: 100px; // 🟢 Igual que en desktop
+    left: 10px;
+    top: unset; // 🔴 Elimina top en móviles
+    padding: 6px 12px;
+    font-size: 13px;
+
+    .status-icon {
+      font-size: 16px;
+      width: 16px;
+      height: 16px;
+    }
+  }
+}
+
+
+@media (max-width: 480px) {
+  .map-legend {
+    .legend-items {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+    }
+  }
+  
+  .no-data-message {
+    padding: 0 20px;
+    
+    .no-data-icon {
+      font-size: 48px;
+      width: 48px;
+      height: 48px;
+    }
+    
+    h3 {
+      font-size: 16px;
+    }
+    
+    p {
+      font-size: 13px;
+    }
+  }
+}
+
+.map-wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  
+  .map-header {
+    padding: 16px;
+    border-bottom: 1px solid #e0e0e0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    h2 {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 0;
+    }
+    
+    .map-controls {
+      display: flex;
+      gap: 4px;
+    }
+  }
+  
+  .map-container {
+    flex: 1;
+    position: relative;
+    
+    .map-placeholder {
+      width: 100%;
+      height: 100%;
+      
+      .map-bg {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(45deg, #e8f5e8 25%, transparent 25%), 
+                    linear-gradient(-45deg, #e8f5e8 25%, transparent 25%), 
+                    linear-gradient(45deg, transparent 75%, #e8f5e8 75%), 
+                    linear-gradient(-45deg, transparent 75%, #e8f5e8 75%);
+        background-size: 20px 20px;
+        background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+        position: relative;
+        
+        .map-overlay {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          text-align: center;
+          color: #666;
+          z-index: 1;
+          
+          h3 {
+            margin: 0 0 8px 0;
+            font-size: 24px;
+          }
+          
+          p {
+            margin: 0;
+            opacity: 0.7;
+          }
+        }
+        
+        .map-grid {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          
+          .marker {
+            position: absolute;
+            cursor: pointer;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            
+            .marker-icon {
+              width: 40px;
+              height: 40px;
+              border-radius: 50%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+              transition: all 0.3s ease;
+              
+              mat-icon {
+                font-size: 24px;
+                color: white;
+              }
+            }
+            
+            &.active .marker-icon {
+              background: #4caf50;
+            }
+            
+            &.inactive .marker-icon {
+              background: #f44336;
+            }
+            
+            .marker-tooltip {
+              position: absolute;
+              bottom: 45px;
+              left: 50%;
+              transform: translateX(-50%);
+              background: white;
+              border-radius: 8px;
+              padding: 12px;
+              box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+              min-width: 200px;
+              opacity: 0;
+              visibility: hidden;
+              transition: all 0.3s ease;
+              
+              .tooltip-content {
+                h4 {
+                  margin: 0 0 8px 0;
+                  font-size: 14px;
+                }
+                
+                p {
+                  margin: 0 0 4px 0;
+                  font-size: 12px;
+                  color: #666;
+                  display: flex;
+                  align-items: center;
+                  gap: 4px;
+                  
+                  mat-icon {
+                    font-size: 14px;
+                  }
+                }
+                
+                .status {
+                  display: inline-block;
+                  padding: 2px 8px;
+                  border-radius: 12px;
+                  font-size: 11px;
+                  font-weight: 500;
+                  
+                  &.active {
+                    background: #e8f5e8;
+                    color: #4caf50;
+                  }
+                  
+                  &.inactive {
+                    background: #ffebee;
+                    color: #f44336;
+                  }
+                }
+              }
+            }
+            
+            &:hover {
+              .marker-icon {
+                transform: scale(1.1);
+              }
+              
+              .marker-tooltip {
+                opacity: 1;
+                visibility: visible;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  .status-info {
+    padding: 16px;
+    display: flex;
+    gap: 16px;
+    border-top: 1px solid #e0e0e0;
+    
+    .stat-card {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px;
+      
+      &.active {
+        border-left: 4px solid #4caf50;
+        
+        mat-icon {
+          color: #4caf50;
+        }
+      }
+      
+      &.inactive {
+        border-left: 4px solid #f44336;
+        
+        mat-icon {
+          color: #f44336;
+        }
+      }
+      
+      div {
+        display: flex;
+        flex-direction: column;
+        
+        .number {
+          font-size: 24px;
+          font-weight: 600;
+        }
+        
+        .label {
+          font-size: 12px;
+          color: #666;
+        }
+      }
+    }
+  }
+  
+  .no-data-message {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #666;
+    
+    mat-icon {
+      font-size: 48px;
+      height: 48px;
+      width: 48px;
+      margin-bottom: 16px;
+      opacity: 0.5;
+    }
+    
+    h3 {
+      margin: 0 0 8px 0;
+    }
+    
+    p {
+      margin: 0;
+      text-align: center;
+    }
+  }
+}
